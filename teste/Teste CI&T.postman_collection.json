@@ -1,0 +1,164 @@
+{
+	"info": {
+		"_postman_id": "72545707-3b04-4e04-8641-87afa9540020",
+		"name": "Teste CI&T",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20799583",
+		"_collection_link": "https://universal-escape-532023.postman.co/workspace/Team-Workspace~b4a6b3a0-1b86-4a26-81db-6978fb0faaf9/collection/20799583-72545707-3b04-4e04-8641-87afa9540020?action=share&source=collection_link&creator=20799583"
+	},
+	"item": [
+		{
+			"name": "Job",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"body length\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).length > 0;\r",
+							"});\r",
+							"\r",
+							"pm.test(\"test order\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData[0]).to.equal = [1,3];\r",
+							"    pm.expect(jsonData[1]).to.equal = [2];\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/jobs",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"jobs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "JobBody",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"body length\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).length > 0;\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"function randDate(inicio, fim) {\r",
+							"    const dataInicio = new Date(inicio).getTime();\r",
+							"    const dataFim = new Date(fim).getTime();\r",
+							"    const dataRandom = Math.random() * (dataFim - dataInicio) + dataInicio;\r",
+							"    const data = new Date(dataRandom)\r",
+							"    return data;\r",
+							"}\r",
+							"\r",
+							"function randHora(min, max){\r",
+							"    const hora = Math.floor(Math.random() * (max - min + 1)) + min;\r",
+							"    return hora\r",
+							"}\r",
+							"\r",
+							"const inicio = '2019-11-10 09:00:00'; \r",
+							"const fim = '2019-11-11 12:00:00'; \r",
+							"const horasMin = 1;\r",
+							"const horasMax = 8;\r",
+							"const randomDate1 = randDate(inicio, fim);\r",
+							"const randomDate2 = randDate(inicio, fim);\r",
+							"const randomDate3 = randDate(inicio, fim);\r",
+							"const randomDate4 = randDate(inicio, fim);\r",
+							"pm.environment.set('randomDate1', randomDate1.toISOString());\r",
+							"pm.environment.set('randomDate2', randomDate2.toISOString());\r",
+							"pm.environment.set('randomDate3', randomDate3.toISOString());\r",
+							"pm.environment.set('randomDate4', randomDate4.toISOString());\r",
+							"\r",
+							"pm.environment.set(\"randomHour1\", randHora(horasMin, horasMax));\r",
+							"pm.environment.set(\"randomHour2\", randHora(horasMin, horasMax));\r",
+							"pm.environment.set(\"randomHour3\", randHora(horasMin, horasMax));\r",
+							"pm.environment.set(\"randomHour4\", randHora(horasMin, horasMax));\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n  {\r\n      \"id\": 1,\r\n      \"descricao\": \"Importação de arquivos de fundos\",\r\n      \"dataMaxima\": \"{{randomDate1}}\",\r\n      \"tempoEstimado\": {{randomHour1}}\r\n  },\r\n  {\r\n      \"id\": 2,\r\n      \"descricao\": \"Importação de dados da Base Legada\",\r\n      \"dataMaxima\": \"{{randomDate2}}\",\r\n      \"tempoEstimado\": {{randomHour2}}\r\n  },\r\n  {\r\n      \"id\": 3,\r\n      \"descricao\": \"Importação de dados de integração\",\r\n      \"dataMaxima\": \"{{randomDate3}}\",\r\n     \"tempoEstimado\": {{randomHour3}}\r\n  },\r\n  {\r\n      \"id\": 4,\r\n      \"descricao\": \"Job 4\",\r\n      \"dataMaxima\": \"{{randomDate4}}\",\r\n     \"tempoEstimado\": {{randomHour4}}\r\n  }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/jobs",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"jobs"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseURL",
+			"value": "http://localhost:3000",
+			"type": "string"
+		}
+	]
+}
