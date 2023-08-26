@@ -4,10 +4,15 @@ import orderedJobs from '../service/Ordered';
 
 const jobRoutes = Router();
 
-jobRoutes.get('/', async (request: Request, response: Response) => {
+jobRoutes.get('/', async (req: Request, res: Response) => {
   const jobsPriority = orderedJobs(dataBase)
+  return res.json(jobsPriority);
+});
 
-  return response.json(jobsPriority);
+jobRoutes.post('/', async (req: Request, res: Response) => {
+  const data = req.body
+  const jobsPriority = orderedJobs(data);
+  return res.status(200).json(jobsPriority);
 });
 
 export default jobRoutes;
