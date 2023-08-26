@@ -1,8 +1,9 @@
 import { Router } from 'express';
-import testeRoutes from './teste.routes';
+
+import jobRoutes from './jobs.routes';
 
 const routes = Router();
 
-routes.use('/teste', testeRoutes);
+routes.use('/jobs', jobRoutes);
 
 export default routes;
