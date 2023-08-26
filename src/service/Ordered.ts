@@ -1,12 +1,12 @@
 
-interface dataProps {
+interface JobDataProps {
   id: number;
   descricao: string;
   dataMaxima: string;
   tempoEstimado: number;
 }
 
-export default function orderedJobs(data:Array<dataProps>){
+export default function orderedJobs(data:Array<JobDataProps>){
   const orderedArray = 
   data.sort((a,b) => new Date(a.dataMaxima).getTime() - new Date(b.dataMaxima).getTime()); 
 /*
@@ -42,9 +42,11 @@ export default function orderedJobs(data:Array<dataProps>){
   }
   
   /*
-  obs: como no exmploe estava um array só com ID dos jobs eu coloquei job.id nas linhas 22 e 29 
+  obs: como no exmplo estava um array só com ID dos jobs eu coloquei job.id nas linhas 22 e 29 
   caso queira o objeto inteido basta tirar o ".id" das duas linhas comentar a linha 18 e descomentar a linha 19
   */
  
   return orderJobs;
+
+  
 }
