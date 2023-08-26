@@ -42,8 +42,8 @@ export default function orderedJobs(data:Array<dataProps>){
   }
   
   /*
-  obs: como estava um array só com ID dos jobs eu coloquei job.id nas linhas 22 e 29 caso queira o 
-  objeto inteido basta tirar o ".id" das duas linhas comentar a linha 18 e descomentar a linha 19
+  obs: como no exmploe estava um array só com ID dos jobs eu coloquei job.id nas linhas 22 e 29 
+  caso queira o objeto inteido basta tirar o ".id" das duas linhas comentar a linha 18 e descomentar a linha 19
   */
  
   return orderJobs;
